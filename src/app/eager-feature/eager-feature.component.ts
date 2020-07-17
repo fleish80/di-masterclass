@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {CounterService} from '../services/counter.service';
 
 @Component({
   selector: 'app-eager-feature',
@@ -11,7 +12,12 @@ import {Component} from '@angular/core';
               <app-child></app-child>
               <app-child></app-child>
           </div>
+        <pre>count: {{counterService.count}}</pre>
+        <button class="btn btn-primary btn-sm" (click)="counterService.increase()">increase</button>
       </div>
   `
 })
-export class EagerFeatureComponent {}
+export class EagerFeatureComponent {
+  constructor(public counterService: CounterService) {
+  }
+}
