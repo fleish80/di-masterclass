@@ -1,4 +1,4 @@
-import {Component, Self, SkipSelf} from '@angular/core';
+import {Component, Host, Optional, Self, SkipSelf} from '@angular/core';
 import {CounterService} from '../services/counter.service';
 
 @Component({
@@ -13,12 +13,12 @@ import {CounterService} from '../services/counter.service';
           </div>
       </div>
   `,
-  providers: [CounterService]
+  // providers: [CounterService]
 })
 export class LazyFeatureComponent {
 
   constructor(@Self() public counterService: CounterService,
-              @SkipSelf() public parentCounter: CounterService) {
+              @Optional() @SkipSelf() @Host() public parentCounter: CounterService) {
     if (parentCounter) {
       this.counterService = parentCounter;
     }
